@@ -1,23 +1,28 @@
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class MW2MapScrambler {
 
     public static void main(String[] args) {
         String mapFile = "d://Games//New folder (2)//maps.txt";
         String execFile = "d://Games//New folder (2)//startserver.bat";
-        List<Maps> mapList = MapListImport.importMap(mapFile);
+        Map<String, String> mapList = MapListImport.importMap(mapFile);
         String exec = "@echo off\n" +
                 "start iw4x.exe -dedicated set net_port 28961 +exec server.cfg +party_enable 0 +sv_maxclients 16"
                 + "set lan_only 1 +set fs_game \"mods/bots\" +set sv_mapRotation \"";
-        Collections.shuffle(mapList);
-        for(Maps m: mapList){
-            exec += m.getInGame();
-            System.out.println(m.plainText);
+        List<String> maps = new ArrayList<>(mapList.keySet());
+        Collections.shuffle(maps);
+        Iterator<String> iterator = maps.iterator();
+        while(iterator.hasNext()){
+            String m = iterator.next();
+            if(iterator.hasNext()) {
+                exec += mapList.get(m) + " ";
+                System.out.println(m);
+            } else {
+                exec += mapList.get(m);
+                System.out.println(m);
+            }
         }
         exec += "\" +map_rotate +set g_gametype dom +set bots_manage_fill 12 +set scr_xpscale 4";
         try {
