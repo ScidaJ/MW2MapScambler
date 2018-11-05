@@ -1,6 +1,6 @@
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.*;
+
 
 public class MW2MapScrambler {
     public static void main(String[] args) throws IOException {
