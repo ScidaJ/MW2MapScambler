@@ -19,8 +19,8 @@ public class MW2MapScrambler {
             logger.log(Level.SEVERE, e.toString(), e);
         }
         handler.setFormatter(new SimpleFormatter());
-        String mapFile = "d://Games//New folder (2)//maps.txt";
-        String execFile = "d://Games//New folder (2)//startserver.bat";
+        String mapFile = args[0];
+        String execFile = args[1];
         MapListImport.importMap(mapFile);
         StringBuilder bld = new StringBuilder();
         bld.append("@echo off\n");
