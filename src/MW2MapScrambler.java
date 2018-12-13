@@ -3,18 +3,22 @@ import java.io.PrintWriter;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 
 public class MW2MapScrambler {
 
     static Logger logger = Logger.getLogger(MW2MapScrambler.class.getName());
+    static FileHandler handler;
 
     public static void main(String[] args) {
         try {
-            logger.addHandler(new FileHandler("Scrambler.log"));
+            handler = new FileHandler("Scrambler.log");
+            logger.addHandler(handler);
         } catch(IOException e){
             logger.log(Level.SEVERE, e.toString(), e);
         }
+        handler.setFormatter(new SimpleFormatter());
         String mapFile = "d://Games//New folder (2)//maps.txt";
         String execFile = "d://Games//New folder (2)//startserver.bat";
         MapListImport.importMap(mapFile);
