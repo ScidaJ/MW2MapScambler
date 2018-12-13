@@ -15,7 +15,7 @@ public class MapListImport {
         mapContainer = new HashMap<>();
         try(Stream<String> stream = Files.lines(Paths.get(fileName))){
             String[] maps = stream.toArray(String[]::new);
-            int size = (maps.length);
+            int size = (maps.length - 1);
             Random rand = new Random();
             for(String s: maps){
                 Integer integer = new Integer(rand.nextInt(size));
@@ -27,8 +27,8 @@ public class MapListImport {
                     }
                 }
                 String[] mapHold = s.split(",");
-                String inGame = mapHold[0];
-                String plainText = mapHold[1];
+                String inGame = mapHold[0].toString();
+                String plainText = mapHold[1].toString();
                 mapContainer.put(plainText, inGame);
                 mapList.put(integer, plainText);
             }

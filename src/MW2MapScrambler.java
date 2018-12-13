@@ -10,12 +10,12 @@ public class MW2MapScrambler {
         MapListImport.importMap(mapFile);
         String exec = "@echo off\n" +
                 "start iw4x.exe -dedicated set net_port 28961 +exec server.cfg +party_enable 0 +sv_maxclients 16"
-                + "set lan_only 1 +set fs_game \"mods/bots\" +set sv_mapRotation \"";
+                + " +set lan_only 1 +set fs_game \"mods/bots\" +set sv_mapRotation \"";
         for(int i = 0;i < MapListImport.mapList.size();i++){
             if(i < MapListImport.mapList.size() - 1){
-                exec += MapListImport.mapContainer.get(MapListImport.mapList.get(i)) + " ";
+                exec += "map " + MapListImport.mapContainer.get(MapListImport.mapList.get(i)) + " ";
             } else {
-                exec += MapListImport.mapContainer.get(MapListImport.mapList.get(i));
+                exec += "map " + MapListImport.mapContainer.get(MapListImport.mapList.get(i));
             }
             System.out.println(MapListImport.mapList.get(Integer.valueOf(i)));
         }
