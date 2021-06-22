@@ -17,8 +17,8 @@ public class MW2MapScrambler {
     handler.setFormatter(new SimpleFormatter());
     String mapFile = args[0];
     String execFile = args[1];
-    String preMapConfig = args[2];
-    String postMapConfig = args[3];
+    String preMapConfig = args[2] + "\"";
+    String postMapConfig ="\"" + args[3];
     MapListImport.importMap(mapFile);
     StringBuilder bld = new StringBuilder();
     bld.append("@echo off\n");
